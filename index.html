@@ -1,0 +1,729 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>魏騰麒｜軟體工程師履歷</title>
+    <meta name="description" content="魏騰麒，約 7 年軟體開發經驗，專長 C#、.NET、ASP.NET、WinForm、MS SQL Server，條碼與盤點機系統開發。">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▮</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #eef1f3;
+            --panel: #ffffff;
+            --ink: #101820;
+            --muted: #4d5a64;
+            --line: #cfd7dc;
+            --accent: #0a6c74;
+            --accent-soft: #dcefee;
+            --scan: #d62828;
+            --serif: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+            --sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme="light"]) {
+                --bg: #11171c;
+                --panel: #182026;
+                --ink: #e8eef1;
+                --muted: #9aa8b1;
+                --line: #2b3841;
+                --accent: #5fc4cb;
+                --accent-soft: #1c3a3e;
+                --scan: #ff5a5a;
+            }
+        }
+
+        :root[data-theme="dark"] {
+            --bg: #11171c;
+            --panel: #182026;
+            --ink: #e8eef1;
+            --muted: #9aa8b1;
+            --line: #2b3841;
+            --accent: #5fc4cb;
+            --accent-soft: #1c3a3e;
+            --scan: #ff5a5a;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: var(--sans);
+            font-size: 16px;
+            line-height: 1.75;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: var(--accent);
+        }
+
+        :focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        .wrap {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ---------- Hero ---------- */
+        header.hero {
+            padding: 72px 0 40px;
+            border-bottom: 2px solid var(--ink);
+        }
+
+        .hero h1 {
+            font-family: var(--serif);
+            font-weight: 900;
+            font-size: clamp(56px, 12vw, 120px);
+            line-height: 1.05;
+            letter-spacing: 0.04em;
+            margin: 0;
+        }
+
+        .hero .role {
+            font-size: clamp(18px, 2.6vw, 24px);
+            margin: 12px 0 0;
+            color: var(--muted);
+        }
+
+        .barcode {
+            position: relative;
+            margin-top: 32px;
+            height: 56px;
+            overflow: hidden;
+        }
+
+            .barcode svg {
+                display: block;
+                width: 100%;
+                height: 100%;
+                fill: var(--ink);
+            }
+
+            .barcode::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                width: 3px;
+                background: var(--scan);
+                box-shadow: 0 0 12px var(--scan);
+                transform: translateX(-10px);
+                animation: scan 1.6s 0.3s ease-in-out 1 forwards;
+            }
+
+        @keyframes scan {
+            0% {
+                transform: translateX(-10px);
+                opacity: 1;
+            }
+
+            95% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(var(--w, 1000px));
+                opacity: 0;
+            }
+        }
+
+        .hero .facts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 32px;
+            margin: 24px 0 0;
+            padding: 0;
+            list-style: none;
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+            .hero .facts strong {
+                color: var(--ink);
+                font-weight: 700;
+            }
+
+        /* ---------- Layout ---------- */
+        main {
+            padding: 16px 0 64px;
+        }
+
+        section {
+            padding: 44px 0 8px;
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 12px 40px;
+        }
+
+            section > h2 {
+                font-family: var(--serif);
+                font-size: 24px;
+                margin: 0;
+                line-height: 1.3;
+                position: sticky;
+                top: 16px;
+                align-self: start;
+            }
+
+        @media (max-width: 760px) {
+            section {
+                grid-template-columns: 1fr;
+            }
+
+                section > h2 {
+                    position: static;
+                }
+        }
+
+        /* ---------- Skills ---------- */
+        .tier {
+            margin: 0 0 28px;
+        }
+
+            .tier h3 {
+                font-size: 15px;
+                margin: 0 0 10px;
+                color: var(--muted);
+                font-weight: 500;
+            }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+            .chips li {
+                background: var(--panel);
+                border: 1px solid var(--line);
+                border-radius: 6px;
+                padding: 4px 12px;
+                font-size: 15px;
+            }
+
+        .tier.strong .chips li {
+            border-color: var(--accent);
+            background: var(--accent-soft);
+            font-weight: 500;
+        }
+
+        .traits {
+            margin: 0;
+            padding-left: 1.2em;
+        }
+
+            .traits li {
+                margin-bottom: 4px;
+            }
+
+        /* ---------- Experience ---------- */
+        .jobs {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            border-left: 2px solid var(--line);
+        }
+
+            .jobs li {
+                position: relative;
+                padding: 0 0 26px 24px;
+            }
+
+                .jobs li::before {
+                    content: "";
+                    position: absolute;
+                    left: -7px;
+                    top: 10px;
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                    background: var(--accent);
+                    border: 2px solid var(--bg);
+                }
+
+            .jobs .co {
+                font-weight: 700;
+                font-size: 18px;
+                margin: 0;
+            }
+
+            .jobs .meta {
+                margin: 0;
+                color: var(--muted);
+                font-size: 15px;
+            }
+
+        /* ---------- Projects ---------- */
+        .note {
+            margin: 0 0 20px;
+            color: var(--muted);
+        }
+
+        details.project {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+            details.project > summary {
+                cursor: pointer;
+                list-style: none;
+                padding: 14px 18px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 4px 16px;
+                align-items: baseline;
+            }
+
+                details.project > summary::-webkit-details-marker {
+                    display: none;
+                }
+
+                details.project > summary::before {
+                    content: "+";
+                    font-weight: 700;
+                    color: var(--accent);
+                    width: 1em;
+                    flex: none;
+                }
+
+            details.project[open] > summary::before {
+                content: "−";
+            }
+
+        .project .name {
+            font-weight: 700;
+            flex: 1 1 260px;
+        }
+
+        .project .dur {
+            color: var(--muted);
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .project .body {
+            padding: 0 18px 18px 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .project .desc {
+            margin: 14px 0;
+        }
+
+        .project dl {
+            margin: 0;
+            display: grid;
+            grid-template-columns: 5.5em 1fr;
+            gap: 4px 12px;
+            font-size: 15px;
+        }
+
+        .project dt {
+            color: var(--muted);
+        }
+
+        .project dd {
+            margin: 0;
+        }
+
+        .project .actions {
+            margin: 0 0 18px;
+            text-align: right;
+        }
+
+            .project .actions button {
+                font: inherit;
+                font-size: 14px;
+                background: none;
+                border: 1px solid var(--line);
+                color: var(--ink);
+                padding: 3px 12px;
+                border-radius: 6px;
+                cursor: pointer;
+            }
+
+        /* ---------- Education ---------- */
+        .plain {
+            margin: 0 0 20px;
+        }
+
+            .plain p {
+                margin: 0;
+            }
+
+            .plain .sub {
+                color: var(--muted);
+                font-size: 15px;
+            }
+
+        footer {
+            border-top: 1px solid var(--line);
+            padding: 24px 0 48px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            .barcode::after {
+                animation: none;
+                opacity: 0;
+            }
+        }
+
+        @media print {
+            body {
+                background: #fff;
+                color: #000;
+            }
+
+            .barcode::after, .actions {
+                display: none;
+            }
+
+            section {
+                break-inside: avoid;
+            }
+
+            details.project {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="wrap">
+            <h1>魏騰麒</h1>
+            <p class="role">軟體工程師・C# / .NET</p>
+            <div class="barcode" id="barcode" aria-hidden="true"></div>
+            <ul class="facts">
+                <li><strong>約 7 年</strong>軟體開發實務經驗</li>
+                <li><strong>專長</strong>條碼、盤點機、Windows 桌面與 Web 系統</li>
+                <li><strong>資料庫</strong>MS SQL Server、SQLite、Access</li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="wrap">
+
+        <section id="summary">
+            <h2>資格綜述</h2>
+            <div>
+                <div class="tier strong">
+                    <h3>熟悉</h3>
+                    <ul class="chips">
+                        <li>C#</li>
+                        <li>ASP.NET</li>
+                        <li>WinForm</li>
+                        <li>XML</li>
+                        <li>Web Service</li>
+                        <li>C 語言</li>
+                        <li>Windows 管理與維護</li>
+                        <li>MS SQL Server</li>
+                        <li>SQLite</li>
+                        <li>Access</li>
+                        <li>FastReport</li>
+                        <li>Crystal Report</li>
+                        <li>Mifare 卡片技術</li>
+                    </ul>
+                </div>
+                <div class="tier">
+                    <h3>略懂</h3>
+                    <ul class="chips">
+                        <li>AJAX</li>
+                        <li>C++</li>
+                        <li>VB</li>
+                        <li>UML（無實務經驗）</li>
+                        <li>IIS 安裝、設定與維護（Windows 2000 / 2003 Server）</li>
+                        <li>WinSock 通訊（C#）</li>
+                    </ul>
+                </div>
+                <ul class="traits">
+                    <li>工作態度積極，學習主動快速，並能良好溝通與互動。</li>
+                    <li>可獨立作業，也能與團隊成員搭配合作。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2>工作經歷</h2>
+            <ol class="jobs">
+                <li>
+                    <p class="co">將軍條碼</p>
+                    <p class="meta">程式設計師・2014/11 – 2016/7</p>
+                </li>
+                <li>
+                    <p class="co">伯茂事業股份有限公司</p>
+                    <p class="meta">程式設計師・2009/5 – 2012/12</p>
+                </li>
+                <li>
+                    <p class="co">碩良科技股份有限公司</p>
+                    <p class="meta">測試工程師・2005/3 – 2008/8</p>
+                </li>
+            </ol>
+        </section>
+
+        <section id="projects">
+            <h2>專案經歷</h2>
+            <div>
+                <p class="note">工作經歷上大部分以短時間的小案子為主，以下列舉幾個比較有代表性的專案。</p>
+                <div class="actions" style="text-align:right;margin-bottom:10px">
+                    <button type="button" id="toggleAll" style="font:inherit;font-size:14px;background:none;border:1px solid var(--line);color:var(--ink);padding:3px 12px;border-radius:6px;cursor:pointer">全部展開</button>
+                </div>
+
+                <details class="project" open>
+                    <summary><span class="name">亞克迪生｜工時統計軟體</span><span class="dur">2015/12 – 2016/3・4 個月</span></summary>
+                    <div class="body">
+                        <p class="desc">統計 2 個工廠約 20 位作業員的工時，需細分部門、站點、人員。前端作業員記錄的工時即時傳回後端 MS SQL 資料庫；其他功能包含帳號登入權限控管、記錄查詢、匯出符合需求的 Excel、資料庫備份與報表輸出。</p>
+                        <dl>
+                            <dt>擔任角色</dt>
+                            <dd>SA、SD、PG</dd>
+                            <dt>使用技術</dt>
+                            <dd>C#、FastReport</dd>
+                            <dt>使用工具</dt>
+                            <dd>Visual Studio 2010</dd>
+                            <dt>專案環境</dt>
+                            <dd>Windows、MS SQL Server 2008 R2</dd>
+                        </dl>
+                    </div>
+                </details>
+
+                <details class="project">
+                    <summary><span class="name">蘭陽開發工業股份有限公司｜出入庫管理</span><span class="dur">2 個月</span></summary>
+                    <div class="body">
+                        <p class="desc">前端以盤點機讀取出入庫條碼，透過 Wi-Fi 即時傳回後端 MS SQL Server。後端管理程式功能包含登入權限控管、出入庫記錄查詢、匯出 Excel、盤點差異比對。</p>
+                        <dl>
+                            <dt>擔任角色</dt>
+                            <dd>SA、PG</dd>
+                            <dt>使用技術</dt>
+                            <dd>C#</dd>
+                            <dt>使用工具</dt>
+                            <dd>Visual Studio 2005</dd>
+                            <dt>專案環境</dt>
+                            <dd>Windows、SQLite、MS SQL Server</dd>
+                        </dl>
+                    </div>
+                </details>
+
+                <details class="project">
+                    <summary><span class="name">光寶科技｜借出入管理</span><span class="dur">2 週</span></summary>
+                    <div class="body">
+                        <p class="desc">使用盤點機讀取借出入貨品資料，再傳回電腦進行記錄管理。</p>
+                        <dl>
+                            <dt>擔任角色</dt>
+                            <dd>SA、PG</dd>
+                            <dt>使用技術</dt>
+                            <dd>C#</dd>
+                            <dt>使用工具</dt>
+                            <dd>Visual Studio 2005</dd>
+                            <dt>專案環境</dt>
+                            <dd>Windows、Access</dd>
+                        </dl>
+                    </div>
+                </details>
+
+                <details class="project">
+                    <summary><span class="name">友達光電｜貨品管理</span><span class="dur">2 週</span></summary>
+                    <div class="body">
+                        <p class="desc">透過盤點機收集貨品資料，並以 WinSock 通訊即時傳回電腦。</p>
+                        <dl>
+                            <dt>擔任角色</dt>
+                            <dd>SA、PG</dd>
+                            <dt>使用技術</dt>
+                            <dd>C#、WinSock</dd>
+                            <dt>使用工具</dt>
+                            <dd>Visual Studio 2005</dd>
+                            <dt>專案環境</dt>
+                            <dd>Windows、MS SQL Server 2008</dd>
+                        </dl>
+                    </div>
+                </details>
+
+                <details class="project">
+                    <summary><span class="name">外送飲料條碼標籤列印</span><span class="dur">1 週</span></summary>
+                    <div class="body">
+                        <p class="desc">與喬立達數位媒體合作。程式解析網站傳來的 XML 資料，轉換成訂單資訊，並輸出到條碼機列印標籤貼紙。</p>
+                        <dl>
+                            <dt>擔任角色</dt>
+                            <dd>PG</dd>
+                            <dt>使用技術</dt>
+                            <dd>C#、XML</dd>
+                            <dt>使用工具</dt>
+                            <dd>Visual Studio 2010</dd>
+                            <dt>專案環境</dt>
+                            <dd>Windows</dd>
+                        </dl>
+                    </div>
+                </details>
+
+                <details class="project">
+                    <summary><span class="name">圖書管理系統</span><span class="dur">1 個月</span></summary>
+                    <div class="body">
+                        <p class="desc">以書籍條碼控管借出與借入。主要功能包含書籍借還、逾期通知、列印書籍標籤、接收盤點機資料、報表輸出。</p>
+                        <dl>
+                            <dt>擔任角色</dt>
+                            <dd>PG</dd>
+                            <dt>使用技術</dt>
+                            <dd>C#、FastReport、Crystal Report</dd>
+                            <dt>使用工具</dt>
+                            <dd>Visual Studio 2005</dd>
+                            <dt>專案環境</dt>
+                            <dd>Windows、Access</dd>
+                        </dl>
+                    </div>
+                </details>
+
+                <details class="project">
+                    <summary><span class="name">中原大學｜學生卡片（Mifare 卡）錄碼</span><span class="dur">1 個月</span></summary>
+                    <div class="body">
+                        <p class="desc">讀取學生卡片資料、錄碼、更改卡片 Key A / Key B 值，並提供使用者權限控管；需連線到學校內部的 Oracle 資料庫。</p>
+                        <dl>
+                            <dt>擔任角色</dt>
+                            <dd>PG</dd>
+                            <dt>使用技術</dt>
+                            <dd>C#、Mifare Card</dd>
+                            <dt>使用工具</dt>
+                            <dd>Visual Studio 2005</dd>
+                            <dt>專案環境</dt>
+                            <dd>Windows、Oracle</dd>
+                        </dl>
+                    </div>
+                </details>
+
+                <details class="project">
+                    <summary><span class="name">ICOI 牙醫協會｜會員申請 Web Service</span><span class="dur">1 週</span></summary>
+                    <div class="body">
+                        <p class="desc">傳入、傳出網頁上註冊 ICOI 會員的資訊。由於每筆會員註冊資料都要計費，特別注重網路通訊時的資料正確性，避免因意外造成資料重複或不完整。</p>
+                        <dl>
+                            <dt>擔任角色</dt>
+                            <dd>PG</dd>
+                            <dt>使用技術</dt>
+                            <dd>C#、Web Service</dd>
+                            <dt>使用工具</dt>
+                            <dd>Visual Studio 2005</dd>
+                            <dt>專案環境</dt>
+                            <dd>Windows</dd>
+                        </dl>
+                    </div>
+                </details>
+
+                <details class="project">
+                    <summary><span class="name">伯茂事業｜公司內部網站 RMA 維修管理</span><span class="dur">1 個月</span></summary>
+                    <div class="body">
+                        <p class="desc">在網頁上登記維修相關資訊，並列印維修單。</p>
+                        <dl>
+                            <dt>擔任角色</dt>
+                            <dd>PG</dd>
+                            <dt>使用技術</dt>
+                            <dd>ASP.NET、JavaScript、Crystal Report</dd>
+                            <dt>使用工具</dt>
+                            <dd>Visual Studio 2005</dd>
+                            <dt>專案環境</dt>
+                            <dd>Windows、SQL Server 2005</dd>
+                        </dl>
+                    </div>
+                </details>
+
+                <details class="project">
+                    <summary><span class="name">考勤管理網站</span><span class="dur">1 個月</span></summary>
+                    <div class="body">
+                        <p class="desc">人員登入權限控管、考勤遲到早退計算、報表輸出。</p>
+                        <dl>
+                            <dt>擔任角色</dt>
+                            <dd>PG</dd>
+                            <dt>使用技術</dt>
+                            <dd>ASP.NET、JavaScript</dd>
+                            <dt>使用工具</dt>
+                            <dd>Visual Studio 2005</dd>
+                            <dt>專案環境</dt>
+                            <dd>Windows、SQL Server 2005</dd>
+                        </dl>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2>學歷與受訓</h2>
+            <div>
+                <div class="plain">
+                    <p><strong>景文技術學院（景文科技大學）</strong></p>
+                    <p class="sub">資訊管理系</p>
+                </div>
+                <div class="plain">
+                    <p><strong>資策會</strong></p>
+                    <p class="sub">約半年的 .NET（Visual Studio 2005）全套課程：WinForm、ASP.NET、Windows Mobile、Web Service、ADO.NET</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="wrap">魏騰麒　履歷</div>
+    </footer>
+
+    <script>// Barcode strip generated from the name, purely decorative
+  (function () {
+    var el = document.getElementById('barcode');
+    var seed = '魏騰麒';
+    var bars = [], x = 0, total = 1000, i = 0, s = 0;
+    for (var c = 0; c < seed.length; c++) s += seed.charCodeAt(c);
+    var state = s;
+    function rnd() { state = (state * 9301 + 49297) % 233280; return state / 233280; }
+    var svg = '<svg viewBox="0 0 ' + total + ' 56" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">';
+    while (x < total) {
+      var w = 2 + Math.floor(rnd() * 3) * 2;
+      var gap = 2 + Math.floor(rnd() * 3) * 2;
+      if (x + w > total) break;
+      svg += '<rect x="' + x + '" y="0" width="' + w + '" height="56"/>';
+      x += w + gap;
+    }
+    svg += '</svg>';
+    el.innerHTML = svg;
+    function setW() { el.style.setProperty('--w', (el.clientWidth - 3) + 'px'); }
+    setW();
+    window.addEventListener('resize', setW);
+  })();
+
+  // Expand / collapse all projects
+  (function () {
+    var btn = document.getElementById('toggleAll');
+    var items = document.querySelectorAll('details.project');
+    var open = false;
+    btn.addEventListener('click', function () {
+      open = !open;
+      items.forEach(function (d) { d.open = open; });
+      btn.textContent = open ? '全部收合' : '全部展開';
+    });
+  })();</script>
+</body>
+</html>
